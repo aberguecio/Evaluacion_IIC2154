@@ -1,0 +1,10 @@
+import re
+from collections import Counter
+
+with open('farmers-protest-tweets-2021-03-5.json') as fp:
+    dias = []
+    for line in fp:
+        x = re.findall('"created": "[0-9-]*', line)[0]
+        dias.append(x)
+    dias = Counter(dias).most_common(10)
+    print(dias)

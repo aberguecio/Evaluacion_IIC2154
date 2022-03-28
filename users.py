@@ -1,12 +1,16 @@
 import json
 import re
+from collections import Counter
 #farmers-protest-tweets-2021-03-5
 
-with open('test.json') as fp:
-    user = []
+with open('farmers-protest-tweets-2021-03-5.json') as fp:
+    users = []
     for line in fp:
         x = re.findall('"user": {"username": [a-zA-Z0-9._%+\-"]*', line)[0]
-        print(x)
+        users.append(x)
+    users = Counter(users).most_common(10)
+    print(users)
+
     """  if (x != None):
             x = int(x)
             print(x)

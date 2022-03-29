@@ -1,19 +1,21 @@
 import json
 import re
 
-with open('farmers-protest-tweets-2021-03-5.json') as fp:
-    tweet = []
-    data = []
-    for line in fp:
-        data.append(json.loads(line))
-        x = re.findall("\d*",re.findall('retweetCount": [0-9]*', line)[0])[15]
-        if (x != None):
-            x = int(x)
-            print(x)
-            if len(tweet) < 5:
-                tweet.append([x,x])
-                tweet.sort(key=lambda i:i[1],reverse=True)
-            elif tweet[4][1] < x:
-                tweet[4] = [x,x]
-                tweet.sort(key=lambda i:i[1],reverse=True)
-print(tweet)
+def retweet (jsons):
+    with open(jsons) as fp:
+        tweet = []
+        for line in fp:
+            x = re.findall("\d*",re.findall('retweetCount": [0-9]*', line)[0])[15]
+            if (x != None):
+                x = int(x)
+                if len(tweet) < 10:
+                    id = (re.findall('id": [0-9]*', line)[0])[5:]
+                    tweet.append([id,x])
+                    tweet.sort(key=lambda i:i[1],reverse=True)
+                elif tweet[9][1] < x:
+                    id = (re.findall('id": [0-9]*', line)[0])[5:]
+                    tweet[9] = [id,x]
+                    tweet.sort(key=lambda i:i[1],reverse=True)
+    return(tweet)
+
+#print(retweet('farmers-protest-tweets-2021-03-5.json'))

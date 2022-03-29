@@ -1,10 +1,7 @@
 import json
 import re
 
-
-#farmers-protest-tweets-2021-03-5
-
-with open('test.json') as fp:
+with open('farmers-protest-tweets-2021-03-5.json') as fp:
     tweet = []
     data = []
     for line in fp:
@@ -20,17 +17,3 @@ with open('test.json') as fp:
                 tweet[4] = [x,x]
                 tweet.sort(key=lambda i:i[1],reverse=True)
 print(tweet)
-
-"""             t=4
-            while t >= 0:
-                if tweet[t][1] < x:
-                    t -= 1
-                    if t == -1:
-                        tweet[0] = [x,x]
-                        print(tweet)
-                else :
-                    if t<4:
-                        tweet[t+1] = [x,x]
-                    break """
-
-

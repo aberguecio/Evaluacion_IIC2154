@@ -10,4 +10,4 @@ def dias(json):
         dias = Counter(dias).most_common(10)
     return(dias)
 
-print(dias("test.json"))
+#print(dias("test.json"))
